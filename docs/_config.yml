@@ -1,0 +1,7 @@
+includes_dir: jekyll/_includes
+layouts_dir: jekyll/_layouts
+data_dir: jekyll/_data
+sass: 
+  sass_dir: jekyll/_sass
+  cache_location: jekyll/.sass-cache
+destination: jekyll/_site

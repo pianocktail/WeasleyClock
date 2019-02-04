@@ -1,0 +1,9 @@
+left:  # left hand side of your menu bar, usually only one home entry 
+  - { label: hyde }
+
+mid:   # left part of right-hand side --> disappear on small displays
+  - { label: Setup, link: setup }
+
+right: # right-hand side --> dont disappear 
+  - { label: Usage, link: usage }
+  - { label: API, link: dummy/API }

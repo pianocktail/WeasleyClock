@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<!-- HTML head -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>{{ page.label | default: page.title }}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="{{ "jekyll/clipboard.min.js" | relative_url }}"></script>
+        <script src="{{ "jekyll/search/tipuesearch_content.js" | relative_url }}"></script>
+        <script src="{{ "jekyll/search/tipuesearch_set.js" | relative_url }}"></script>
+        <script src="{{ "jekyll/search/tipuesearch.min.js" | relative_url }}"></script>
+        <script src="{{ "jekyll/search/init.js" | relative_url }}"></script>
+        <link rel="stylesheet" href="{{ "jekyll/search/css/normalize.css" | relative_url }}">
+        <link rel="stylesheet" href="{{ "jekyll/search/css/tipuesearch.css" | relative_url }}">
+        <link rel="stylesheet" href="{{ "jekyll/styles.css" | relative_url }}">
+    </head>
+
+    <body class={{page.layout}}>
+        
+
+<!-- Menu Bar -->
+
+        <header class="menubar">
+            <a class="left" href="#"><img src="{{ 'jekyll/icons/home.svg' | relative_url }}"></a>
+            {% for item in site.data.menu.left %}
+                <a href="{{ item.link | relative_url | default: site.baseurl | append:'/' }}" class='home'>{{ item.label }}</a>
+            {% endfor %}
+            <nav>
+                {% for item in site.data.menu.mid %}
+                    <a href="{{ item.link | relative_url }}" class='skip-if-tight'>{{ item.label | default: item.link }}</a>
+                {% endfor %}
+                {% for item in site.data.menu.right %}
+                    <a href="{{ item.link | relative_url }}">{{ item.label | default: item.link }}</a>
+                {% endfor %}
+            </nav>
+        </header>
+
+
+<!-- Side Bar -->
+
+        {% assign main="" | split:"" %}
+        {% for p in site.pages %}
+        {% unless p.menu == 'skip' %}
+            {% assign level = p.level | default: p.path | replace: '/index.md' | split: '/' | size %}
+            {% if level == 1 %}{% assign main = main | push: p %}{% endif %}
+        {% endunless %}
+        {% endfor %}
+        {% assign folder = page.path | split:'/' | first | replace: 'index.md','<home>' | append:'/' %}
+        {% assign main = main | sort: "path" | sort: 'index','last' %}
+
+        <header class="sidebar">
+            <ul>
+            {% for p in main %}
+                <li>
+                    <a href="{{ p.url | relative_url }}" data-shorty="{{p.shorty | default: p.label}}">
+                        {{ p.label | default:p.title }}
+                    </a>
+                {% if p.path == page.path or p.path contains folder %}
+                    <ul data-shorty="{{page.shorty | default: page.label | default: page.title}}">
+                        <!-- to be filled in in scripts.js -->
+                    </ul> 
+                {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </header>
+
+        <div class="content wrapper">
+
+<!-- Search -->
+
+            <div id="search-icon">
+                <img src="{{ "jekyll/icons/search.svg" | relative_url }}" class="tipue_search_icon">
+            </div>        
+            <form id="search" style="display:none">
+                <div class="tipue_search_right">
+                    <input type="text" name="q" id="tipue_search_input" pattern=".{3,}" required>
+                </div>
+            </form>
+            <section id="search-results"> 
+                <div id="tipue_search_content"></div>
+            </section>
+
+
+<!-- Page Content -->
+
+            <section id="content"> 
+                {{ content }} 
+            </section>
+
+        </div>
+
+
+<!-- Footer -->
+
+        <footer> 
+            <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+            by <a href="https://jekyllrb.com" target="_blank">jekyll</a>
+            &amp; <a href="https://danjoa.github.io/hyde" target="_blank">hyde</a>
+        </footer>
+
+        <script src="{{ 'jekyll/hyde.js' | relative_url }}"></script>
+
+        {% include page.md %}
+        
+    </body>
+
+</html>

@@ -1,0 +1,7 @@
+* item
+{:toc .sidebar.menu {{include.menu}}}
+{% if include.levels %}
+{::options toc_levels="{{include.levels}}" /}
+{% else %}
+{::options toc_levels='2' /}
+{% endif %}

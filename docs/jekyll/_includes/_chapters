@@ -1,0 +1,50 @@
+{% assign folder = page.path | split:'/' | pop | join:'/' | append:'/' %}
+{% capture head %}{{folder}}{% if include.from %}{{include.from}}/{% endif %}{% endcapture %}
+{% assign chapters='' | split:'' %}
+{% assign all = site.pages 
+    | where_exp: "p","p.path != page.path" 
+    | where_exp: "p","p.path contains head" 
+    | sort: "path"
+%}
+
+{% for p in all -------- filter a second time ------- %}
+    {% if p.level and p.level < 2 %}{% continue %}{% endif %}
+    {% assign tail = p.path | replace:head | replace:"/index.md" %}
+    {% if tail contains "/" %}{% continue %}{% endif %}
+    {% assign chapters = chapters | push: p %}
+{% endfor %}
+
+
+
+{% if include.synopsis %}<!-- ------------- Including synopsis for chapters in {{folder}} ---------------- -->
+
+
+{: .sidebar.menu}
+
+    {% for p in chapters %}
+    {% if p.synopsis or include.synopsis == 'any' %}
+
+[{{ p.title }}]({{site.baseurl}}{{ p.link | default: p.url }}){%if p.label %}<label>{{p.label}}</label>{%endif%}
+: {{p.synopsis}}
+
+    {% endif %}
+    {% endfor %}
+
+
+
+{% else %}<!-- ------------------- Including content for chapters in {{folder}} ----------------- -->
+
+
+{% if include.toc %}
+{::options toc_levels="{{include.toc}}" /}
+{{ include.toc_pattern | default: '* item' }}
+{:toc .sidebar.menu} 
+{% endif %}
+
+{% for p in chapters %}{% include_relative {{ p.path | replace:folder }} %}
+{% endfor %}
+
+
+
+{% endif %}
+{% include links.md %}
