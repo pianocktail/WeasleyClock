@@ -1,2 +1,2 @@
-# pages
-Test Jekyll &amp; Hyde
+# Weasley Clock
+The Weasley Clock s a magical clock from the Harry Potter books owned by the Weasley family which individually monitored each of their whereabouts. Located in the living room at The Burrow, the clock had nine golden hands, one for every member of the household. In place of hours on the clock's face were a series of possible locations, including "home," "school", "work", "travelling", "lost", "hospital", "prison", and "mortal peril".
