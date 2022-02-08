@@ -2,122 +2,31 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+# Weasleys Clock
+The Weasleys Clock s a magical clock from the Harry Potter books owned by the Weasleys family which individually monitored each of their whereabouts. Located in the living room at The Burrow, the clock had nine golden hands, one for every member of the household. In place of hours on the clock's face were a series of possible locations, including "home," "school", "work", "travelling", "lost", "hospital", "prison", and "mortal peril".
 
-[Link to another page](./another-page.html).
+## Basic Ideas
 
-There should be whitespace between paragraphs.
+The main ideas came from this blog https://www.instructables.com/Build-Your-Own-Weasley-Location-Clock/ by http://www.patpeters.org 
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+## The clock
 
-# Header 1
+I took an old mechanical wooden clock that I found on Ebay because I wanted to reuse as many parts as possible from the old mechanics and the original pointers. But combining the old gears with modern ones and the motors was kind of tricky in the end as is still not working perfectly.
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+## The motors
 
-## Header 2
+I wanted to reuse an old Raspberry Pi type B I decided to use stepper motors instead of servo motors. Main reason was that the Joy-It motors with the board was a perfect fit: https://joy-it.net/de/products/RB-Moto2 . To drive the old mechanical clock gears with the motor I used belts and gears that were made for 3D Printers.
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+## The mobile app
 
-### Header 3
+The [Owntracks App](https://owntracks.org/) is a perfect fit to send MQTT protocol based location information to the raspberry pi.
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+## The MQTT Server
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+I did not manage to install a local MQTT server on my Raspberry Pi. Unfortunately it became quite hard to find a free MQTT server on the internet. What worked for me is the offering from [HiveMQ](https://www.hivemq.com/) offering a free MQTT server hosted on AWS that allows 3 concurrent connections. Just enough to connect 2 mobile devices and the Raspberry Pi.
 
-#### Header 4
+## The Software 
 
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
+Receiving the MQTT information and sending it to a small Python program that manages the motors is really simple with a node-red flow https://nodered.org/   I created two separated flows for the 2 pointers.
 
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
+![](/assets/img/node-red.png)

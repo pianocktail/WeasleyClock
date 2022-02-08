@@ -63,169 +63,34 @@
       </header>
       <section>
 
-      <p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>.</p>
+      <h1 id="weasleys-clock">Weasleys Clock</h1>
+<p>The Weasleys Clock s a magical clock from the Harry Potter books owned by the Weasleys family which individually monitored each of their whereabouts. Located in the living room at The Burrow, the clock had nine golden hands, one for every member of the household. In place of hours on the clock’s face were a series of possible locations, including “home,” “school”, “work”, “travelling”, “lost”, “hospital”, “prison”, and “mortal peril”.</p>
 
-<p><a href="./another-page.html">Link to another page</a>.</p>
+<h2 id="basic-ideas">Basic Ideas</h2>
 
-<p>There should be whitespace between paragraphs.</p>
+<p>The main ideas came from this blog https://www.instructables.com/Build-Your-Own-Weasley-Location-Clock/ by http://www.patpeters.org</p>
 
-<p>There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.</p>
+<h2 id="the-clock">The clock</h2>
 
-<h1 id="header-1">Header 1</h1>
+<p>I took an old mechanical wooden clock that I found on Ebay because I wanted to reuse as many parts as possible from the old mechanics and the original pointers. But combining the old gears with modern ones and the motors was kind of tricky in the end as is still not working perfectly.</p>
 
-<p>This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</p>
+<h2 id="the-motors">The motors</h2>
 
-<h2 id="header-2">Header 2</h2>
+<p>I wanted to reuse an old Raspberry Pi type B I decided to use stepper motors instead of servo motors. Main reason was that the Joy-It motors with the board was a perfect fit: https://joy-it.net/de/products/RB-Moto2 . To drive the old mechanical clock gears with the motor I used belts and gears that were made for 3D Printers.</p>
 
-<blockquote>
-  <p>This is a blockquote following a header.</p>
+<h2 id="the-mobile-app">The mobile app</h2>
 
-  <p>When something is important enough, you do it even if the odds are not in your favor.</p>
-</blockquote>
+<p>The <a href="https://owntracks.org/">Owntracks App</a> is a perfect fit to send MQTT protocol based location information to the raspberry pi.</p>
 
-<h3 id="header-3">Header 3</h3>
+<h2 id="the-mqtt-server">The MQTT Server</h2>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Javascript code with syntax highlighting.</span>
-<span class="kd">var</span> <span class="nx">fun</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">lang</span><span class="p">(</span><span class="nx">l</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">dateformat</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./lang/</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">l</span><span class="p">)</span>
-  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<p>I did not manage to install a local MQTT server on my Raspberry Pi. Unfortunately it became quite hard to find a free MQTT server on the internet. What worked for me is the offering from <a href="https://www.hivemq.com/">HiveMQ</a> offering a free MQTT server hosted on AWS that allows 3 concurrent connections. Just enough to connect 2 mobile devices and the Raspberry Pi.</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ruby code with syntax highlighting</span>
-<span class="no">GitHubPages</span><span class="o">::</span><span class="no">Dependencies</span><span class="p">.</span><span class="nf">gems</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">gem</span><span class="p">,</span> <span class="n">version</span><span class="o">|</span>
-  <span class="n">s</span><span class="p">.</span><span class="nf">add_dependency</span><span class="p">(</span><span class="n">gem</span><span class="p">,</span> <span class="s2">"= </span><span class="si">#{</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="k">end</span>
-</code></pre></div></div>
+<h2 id="the-software">The Software</h2>
 
-<h4 id="header-4">Header 4</h4>
+<p>Receiving the MQTT information and sending it to a small Python program that manages the motors is really simple with a node-red flow https://nodered.org/   I created two separated flows for the 2 pointers.</p>
 
-<ul>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
-  <li>This is an unordered list following a header.</li>
-</ul>
-
-<h5 id="header-5">Header 5</h5>
-
-<ol>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-  <li>This is an ordered list following a header.</li>
-</ol>
-
-<h6 id="header-6">Header 6</h6>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">head1</th>
-      <th style="text-align: left">head two</th>
-      <th style="text-align: left">three</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good swedish fish</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">out of stock</td>
-      <td style="text-align: left">good and plenty</td>
-      <td style="text-align: left">nice</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="language-plaintext highlighter-rouge">oreos</code></td>
-      <td style="text-align: left">hmm</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ok</td>
-      <td style="text-align: left">good <code class="language-plaintext highlighter-rouge">zoute</code> drop</td>
-      <td style="text-align: left">yumm</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="theres-a-horizontal-rule-below-this">There’s a horizontal rule below this.</h3>
-
-<hr />
-
-<h3 id="here-is-an-unordered-list">Here is an unordered list:</h3>
-
-<ul>
-  <li>Item foo</li>
-  <li>Item bar</li>
-  <li>Item baz</li>
-  <li>Item zip</li>
-</ul>
-
-<h3 id="and-an-ordered-list">And an ordered list:</h3>
-
-<ol>
-  <li>Item one</li>
-  <li>Item two</li>
-  <li>Item three</li>
-  <li>Item four</li>
-</ol>
-
-<h3 id="and-a-nested-list">And a nested list:</h3>
-
-<ul>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item
-        <ul>
-          <li>level 3 item</li>
-          <li>level 3 item</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-    </ul>
-  </li>
-  <li>level 1 item
-    <ul>
-      <li>level 2 item</li>
-      <li>level 2 item</li>
-    </ul>
-  </li>
-  <li>level 1 item</li>
-</ul>
-
-<h3 id="small-image">Small image</h3>
-
-<p><img src="https://github.githubassets.com/images/icons/emoji/octocat.png" alt="Octocat" /></p>
-
-<h3 id="large-image">Large image</h3>
-
-<p><img src="https://guides.github.com/activities/hello-world/branching.png" alt="Branching" /></p>
-
-<h3 id="definition-lists-can-be-used-with-html-syntax">Definition lists can be used with HTML syntax.</h3>
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-</code></pre></div></div>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The final element.
-</code></pre></div></div>
+<p><img src="/assets/img/node-red.png" alt="" /></p>
 
 
       </section>
