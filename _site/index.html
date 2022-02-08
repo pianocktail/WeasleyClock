@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Weasleys Clock | The Weasleys Clock was a magical clock from the Harry Potter books owned by the Weasley family which individually monitored each of their whereabouts. The clock had nine golden hands, one for every member of the household. In place of hours on the clock’s face were a series of possible locations indicating the family member currently stays. My clock only has 2 hands because I simply reused the mechanics of the clock.</title>
+<title>Weasley Clock | Short description of my implementation of the magical Weasley clock from the Harry Potter books.</title>
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="Weasleys Clock" />
+<meta property="og:title" content="Weasley Clock" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The Weasleys Clock was a magical clock from the Harry Potter books owned by the Weasley family which individually monitored each of their whereabouts. The clock had nine golden hands, one for every member of the household. In place of hours on the clock’s face were a series of possible locations indicating the family member currently stays. My clock only has 2 hands because I simply reused the mechanics of the clock." />
-<meta property="og:description" content="The Weasleys Clock was a magical clock from the Harry Potter books owned by the Weasley family which individually monitored each of their whereabouts. The clock had nine golden hands, one for every member of the household. In place of hours on the clock’s face were a series of possible locations indicating the family member currently stays. My clock only has 2 hands because I simply reused the mechanics of the clock." />
+<meta name="description" content="Short description of my implementation of the magical Weasley clock from the Harry Potter books." />
+<meta property="og:description" content="Short description of my implementation of the magical Weasley clock from the Harry Potter books." />
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="Weasleys Clock" />
+<meta property="og:site_name" content="Weasley Clock" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Weasleys Clock" />
+<meta property="twitter:title" content="Weasley Clock" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"The Weasleys Clock was a magical clock from the Harry Potter books owned by the Weasley family which individually monitored each of their whereabouts. The clock had nine golden hands, one for every member of the household. In place of hours on the clock’s face were a series of possible locations indicating the family member currently stays. My clock only has 2 hands because I simply reused the mechanics of the clock.","headline":"Weasleys Clock","name":"Weasleys Clock","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/clock.jpg"}},"url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"Short description of my implementation of the magical Weasley clock from the Harry Potter books.","headline":"Weasley Clock","name":"Weasley Clock","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/clock.jpg"}},"url":"http://localhost:4000/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="/assets/css/style.css?v=">
@@ -41,13 +41,13 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><a href="http://localhost:4000/">Weasleys Clock</a></h1>
+        <h1><a href="http://localhost:4000/">Weasley Clock</a></h1>
 
         
           <img src="/assets/img/clock.jpg" alt="Logo" />
         
 
-        <p>The Weasleys Clock was a magical clock from the Harry Potter books owned by the Weasley family which individually monitored each of their whereabouts. The clock had nine golden hands, one for every member of the household. In place of hours on the clock's face were a series of possible locations indicating the family member currently stays. My clock only has 2 hands because I simply reused the mechanics of the clock.</p>
+        <p>Short description of my implementation of the magical Weasley clock  from the Harry Potter books.</p>
 
         
 
@@ -63,34 +63,39 @@
       </header>
       <section>
 
-      <h1 id="weasleys-clock">Weasleys Clock</h1>
-<p>The Weasleys Clock s a magical clock from the Harry Potter books owned by the Weasleys family which individually monitored each of their whereabouts. Located in the living room at The Burrow, the clock had nine golden hands, one for every member of the household. In place of hours on the clock’s face were a series of possible locations, including “home,” “school”, “work”, “travelling”, “lost”, “hospital”, “prison”, and “mortal peril”.</p>
+      <h1 id="weasley-clock">Weasley Clock</h1>
+<p>The Weasleys Family Clock s a magical clock from the Harry Potter books owned by the Weasleys family which individually monitored each of their whereabouts. Located in the living room at The Burrow, the clock had nine golden hands, one for every member of the household. My version has just the 2 original pointers.</p>
 
+<p><img src="/assets/img/UhrFront.jpg" alt="" /></p>
 <h2 id="basic-ideas">Basic Ideas</h2>
 
-<p>The main ideas came from this blog https://www.instructables.com/Build-Your-Own-Weasley-Location-Clock/ by http://www.patpeters.org</p>
+<p>The main ideas came from this <a href="https://www.instructables.com/Build-Your-Own-Weasley-Location-Clock/">blog</a> by <a href="https://www.instructables.com/member/ppeters0502/">ppeters0502</a>.</p>
 
 <h2 id="the-clock">The clock</h2>
 
 <p>I took an old mechanical wooden clock that I found on Ebay because I wanted to reuse as many parts as possible from the old mechanics and the original pointers. But combining the old gears with modern ones and the motors was kind of tricky in the end as is still not working perfectly.</p>
 
+<p><img src="/assets/img/Antrieb2.jpg" alt="" /></p>
 <h2 id="the-motors">The motors</h2>
 
-<p>I wanted to reuse an old Raspberry Pi type B I decided to use stepper motors instead of servo motors. Main reason was that the Joy-It motors with the board was a perfect fit: https://joy-it.net/de/products/RB-Moto2 . To drive the old mechanical clock gears with the motor I used belts and gears that were made for 3D Printers.</p>
+<p>I wanted to reuse an old Raspberry Pi type B and decided to use stepper motors instead of servo motors. Main reason was that the Joy-It motors coming together with the board were a perfect fit: <a href="https://joy-it.net/de/products/RB-Moto2">Joy-IT RB-Motors</a>. To drive the old mechanical clock gears with the motor I used belts and gears that were made for 3D Printers.</p>
 
+<p><img src="/assets/img/Antrieb3.jpg" alt="" /></p>
 <h2 id="the-mobile-app">The mobile app</h2>
 
-<p>The <a href="https://owntracks.org/">Owntracks App</a> is a perfect fit to send MQTT protocol based location information to the raspberry pi.</p>
+<p>The <a href="https://owntracks.org/">Owntracks App</a> is perfect to send MQTT protocol based location information to the raspberry pi.</p>
 
 <h2 id="the-mqtt-server">The MQTT Server</h2>
 
-<p>I did not manage to install a local MQTT server on my Raspberry Pi. Unfortunately it became quite hard to find a free MQTT server on the internet. What worked for me is the offering from <a href="https://www.hivemq.com/">HiveMQ</a> offering a free MQTT server hosted on AWS that allows 3 concurrent connections. Just enough to connect 2 mobile devices and the Raspberry Pi.</p>
+<p>I did not manage to install a local MQTT server on my Raspberry Pi. Unfortunately it became quite hard to find a free MQTT server on the internet. What worked for me is the offering from <a href="https://www.hivemq.com/">HiveMQ</a> offering a free MQTT server hosted on AWS that allows 3 concurrent connections. Just enough to connect 2 mobile devices and the Raspberry Pi in the clock.</p>
 
 <h2 id="the-software">The Software</h2>
 
-<p>Receiving the MQTT information and sending it to a small Python program that manages the motors is really simple with a node-red flow https://nodered.org/   I created two separated flows for the 2 pointers.</p>
+<p>Receiving the MQTT information and sending it to a small Python program that manages the motors is really simple with a node-red flow https://nodered.org/.   I created two separated flows for the 2 pointers. The nodes are mainly configured the same way as described by <a href="https://www.instructables.com/Build-Your-Own-Weasley-Location-Clock/">ppeters0502</a>. I just added some debug nodes and took the “location” only from events of _type “transition” and not from _type “location” to get them only once.  See the Owntracks <a href="https://owntracks.org/booklet/tech/json/">manual</a></p>
 
 <p><img src="/assets/img/node-red.png" alt="" /></p>
+
+<p>The python code can be found <a href="/Uhr.py">here</a>.</p>
 
 
       </section>

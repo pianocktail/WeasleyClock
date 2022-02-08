@@ -109,7 +109,7 @@ if (person == '1'):
     delay = 10 
     steps = 34 * deltaHourMotor
     backwardsHour(int(delay) / 1000.0, int(steps))  
-    print("Jakob is back home")
+    print("Person 1 is back home")
     # No change for minute pointer
     TargetPositionMinuteMotor  = CurrentPositionMinuteMotor   
   else:
@@ -126,7 +126,7 @@ if (person == '1'):
       # Hour pointer move backward 
       steps = 34*(12-deltaHourMotor)
       backwardsHour(int(delay) / 1000.0, int(steps))   
-    print("Jakob moved to: %s" % TargetPositionHourMotor)  
+    print("Person 1 moved to: %s" % TargetPositionHourMotor)  
     # No change for minute pointer
     TargetPositionMinuteMotor  = CurrentPositionMinuteMotor       
 else:
@@ -137,7 +137,7 @@ else:
     delay = 10 
     steps = 40 * deltaMinuteMotor
     backwardsMinute(int(delay) / 1000.0, int(steps))  
-    print("Gitti is back home")
+    print("Person 0 is back home")
     # No change for hourpointer
     TargetPositionHourMotor  = CurrentPositionHourMotor   
   else:
@@ -154,7 +154,7 @@ else:
       # Minute pointer move backward
       steps = 40*(12-deltaMinuteMotor)
       backwardsMinute(int(delay) / 1000.0, int(steps))       
-    print("Gitti moved to: %s" % TargetPositionMinuteMotor)
+    print("Person 0 moved to: %s" % TargetPositionMinuteMotor)
     # No change for hour pointer
     TargetPositionHourMotor  = CurrentPositionHourMotor
 
