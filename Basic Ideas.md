@@ -1,6 +1,3 @@
-# Weasleys Clock
-The Weasleys Clock s a magical clock from the Harry Potter books owned by the Weasleys family which individually monitored each of their whereabouts. Located in the living room at The Burrow, the clock had nine golden hands, one for every member of the household. In place of hours on the clock's face were a series of possible locations, including "home," "school", "work", "travelling", "lost", "hospital", "prison", and "mortal peril".
-
 ## Basic Ideas
 
 The main ideas came from this blog https://www.instructables.com/Build-Your-Own-Weasley-Location-Clock/ by http://www.patpeters.org 
@@ -15,7 +12,7 @@ I wanted to reuse an old Raspberry Pi type B I decided to use stepper motors ins
 
 ## The mobile app
 
-The Owntracks App is a perfect fit to send MQTT protocol based location information to the raspberry pi.
+The Owntracks App is a perfect fit to send MQTT Protocoll based location information to the Rasbperry.
 
 ## The MQTT Server
 
@@ -23,6 +20,12 @@ I did not manage to install a local MQTT server on my Raspberry Pi. Unfortunatel
 
 ## The Software 
 
-Receiving the MQTT information and sending it to a small Python program that manages the motors is really simple with a node-red flow https://nodered.org/   I created two separated flows for the 2 pointers.
+Receiving the MQTT information and sending it to a small Python program that manages the motors is really simple with a node-red flow https://nodered.org/   I created two separated flows for the 2 pointers
 
-![](/assets/img/node-red.png)
+![](/Users/d028779/Desktop/node-red.png)
+
+
+
+
+
+ 
