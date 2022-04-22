@@ -102,67 +102,57 @@ except:
   print("Default Location Index: %s" % loc_index)
 
 if (person == '1'):
-  # Calculate the difference to the next position Hour (Jakob)
   TargetPositionHourMotor = loc_index
-  if loc_index == 0:
-    deltaHourMotor = CurrentPositionHourMotor
-    delay = 10 
+  # No change for minute pointer
+  TargetPositionMinuteMotor  = CurrentPositionMinuteMotor  
+  try:
+    file=open('pointerpos.txt','w')
+    file.write(str(TargetPositionHourMotor))
+    file.write('\n')
+    file.write(str(TargetPositionMinuteMotor))
+    file.close()
+  except:
+     print("Write to file failed!")    
+    # Calculate the difference to the next position Hour (Jakob)
+  if TargetPositionHourMotor >= CurrentPositionHourMotor:
+    deltaHourMotor = TargetPositionHourMotor - CurrentPositionHourMotor
+  elif TargetPositionHourMotor < CurrentPositionHourMotor:
+    deltaHourMotor = 12 - CurrentPositionHourMotor + TargetPositionHourMotor
+  delay = 10
+  if deltaHourMotor <= 6:
+    # Hour pointer move forward 
     steps = 34 * deltaHourMotor
-    backwardsHour(int(delay) / 1000.0, int(steps))  
-    print("Person 1 is back home")
-    # No change for minute pointer
-    TargetPositionMinuteMotor  = CurrentPositionMinuteMotor   
-  else:
-    if TargetPositionHourMotor >= CurrentPositionHourMotor:
-      deltaHourMotor = TargetPositionHourMotor - CurrentPositionHourMotor
-    elif TargetPositionHourMotor < CurrentPositionHourMotor:
-       deltaHourMotor = 12 - CurrentPositionHourMotor + TargetPositionHourMotor
-    delay = 10
-    if deltaHourMotor <= 6:
-      # Hour pointer move forward 
-      steps = 34 * deltaHourMotor
-      forwardHour(int(delay) / 1000.0, int(steps))
-    elif deltaHourMotor > 6:
-      # Hour pointer move backward 
-      steps = 34*(12-deltaHourMotor)
-      backwardsHour(int(delay) / 1000.0, int(steps))   
-    print("Person 1 moved to: %s" % TargetPositionHourMotor)  
-    # No change for minute pointer
-    TargetPositionMinuteMotor  = CurrentPositionMinuteMotor       
+    forwardHour(int(delay) / 1000.0, int(steps))
+  elif deltaHourMotor > 6:
+    # Hour pointer move backward 
+    steps = 34*(12-deltaHourMotor)
+    backwardsHour(int(delay) / 1000.0, int(steps))   
+  print("Person 1 moved to: %s" % TargetPositionHourMotor)      
 else:
-  # Calculate the difference to the next position Minute
+  # new  position Minute
   TargetPositionMinuteMotor = loc_index
-  if loc_index == 0:
-    deltaMinuteMotor = CurrentPositionMinuteMotor
-    delay = 10 
-    steps = 40 * deltaMinuteMotor
-    backwardsMinute(int(delay) / 1000.0, int(steps))  
-    print("Person 0 is back home")
-    # No change for hourpointer
-    TargetPositionHourMotor  = CurrentPositionHourMotor   
-  else:
-    if TargetPositionMinuteMotor >= CurrentPositionMinuteMotor:
-      deltaMinuteMotor = TargetPositionMinuteMotor - CurrentPositionMinuteMotor
-    elif TargetPositionMinuteMotor < CurrentPositionMinuteMotor:
-      deltaMinuteMotor = 12 - CurrentPositionMinuteMotor + TargetPositionMinuteMotor      
+  # No change for hourpointer
+  TargetPositionHourMotor  = CurrentPositionHourMotor
+  try:
+    file=open('pointerpos.txt','w')
+    file.write(str(TargetPositionHourMotor))
+    file.write('\n')
+    file.write(str(TargetPositionMinuteMotor))
+    file.close()
+  except:
+     print("Write to file failed!")  
+  # Calculate the difference to the next position Minute      
+  if TargetPositionMinuteMotor >= CurrentPositionMinuteMotor:
+    deltaMinuteMotor = TargetPositionMinuteMotor - CurrentPositionMinuteMotor
+  elif TargetPositionMinuteMotor < CurrentPositionMinuteMotor:
+    deltaMinuteMotor = 12 - CurrentPositionMinuteMotor + TargetPositionMinuteMotor      
     delay = 10
-    if deltaMinuteMotor <= 6:
+  if deltaMinuteMotor <= 6:
       # Minute pointer move forward  
       steps = 40 * deltaMinuteMotor 
       forwardMinute(int(delay) / 1000.0, int(steps)) 
-    elif deltaMinuteMotor > 6:  
+  elif deltaMinuteMotor > 6:  
       # Minute pointer move backward
       steps = 40*(12-deltaMinuteMotor)
       backwardsMinute(int(delay) / 1000.0, int(steps))       
-    print("Person 0 moved to: %s" % TargetPositionMinuteMotor)
-    # No change for hour pointer
-    TargetPositionHourMotor  = CurrentPositionHourMotor
-
-try:
-  file=open('pointerpos.txt','w')
-  file.write(str(TargetPositionHourMotor))
-  file.write('\n')
-  file.write(str(TargetPositionMinuteMotor))
-  file.close()
-except:
-  print("Write to file failed!")
+  print("Person 0 moved to: %s" % TargetPositionMinuteMotor)
