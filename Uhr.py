@@ -102,9 +102,11 @@ except:
   print("Default Location Index: %s" % loc_index)
 
 if (person == '1'):
+  # Update hour pointer position 
   TargetPositionHourMotor = loc_index
   # No change for minute pointer
   TargetPositionMinuteMotor  = CurrentPositionMinuteMotor  
+  # Immediate update for concurrency
   try:
     file=open('pointerpos.txt','w')
     file.write(str(TargetPositionHourMotor))
@@ -113,7 +115,7 @@ if (person == '1'):
     file.close()
   except:
      print("Write to file failed!")    
-    # Calculate the difference to the next position Hour (Jakob)
+    # Calculate the difference to the next position "hour"
   if TargetPositionHourMotor >= CurrentPositionHourMotor:
     deltaHourMotor = TargetPositionHourMotor - CurrentPositionHourMotor
   elif TargetPositionHourMotor < CurrentPositionHourMotor:
@@ -129,10 +131,11 @@ if (person == '1'):
     backwardsHour(int(delay) / 1000.0, int(steps))   
   print("Person 1 moved to: %s" % TargetPositionHourMotor)      
 else:
-  # new  position Minute
+  # new  position Minute 
   TargetPositionMinuteMotor = loc_index
   # No change for hourpointer
   TargetPositionHourMotor  = CurrentPositionHourMotor
+  # Immediate update for concurrency
   try:
     file=open('pointerpos.txt','w')
     file.write(str(TargetPositionHourMotor))
