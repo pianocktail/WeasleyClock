@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import sys
+import datetime 
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -114,7 +115,16 @@ if (person == '1'):
     file.write(str(TargetPositionMinuteMotor))
     file.close()
   except:
-     print("Write to file failed!")    
+     print("Write to file failed!")   
+  try:
+    file=open('log.txt','a')
+    file.write(str(datetime.datetime.now()))
+    file.write(" Jakob moved to: ")
+    file.write(str(location))
+    file.write('\n')
+    file.close()    
+  except:
+    print("Write to log file failed!")         
     # Calculate the difference to the next position "hour"
   if TargetPositionHourMotor >= CurrentPositionHourMotor:
     deltaHourMotor = TargetPositionHourMotor - CurrentPositionHourMotor
@@ -144,6 +154,15 @@ else:
     file.close()
   except:
      print("Write to file failed!")  
+  try:  
+    file=open('log.txt','a')
+    file.write(str(datetime.datetime.now()))
+    file.write(" Gitti moved to: ")
+    file.write(str(location))
+    file.write('\n')
+    file.close()    
+  except:
+    print("Write to log file failed!")       
   # Calculate the difference to the next position Minute      
   if TargetPositionMinuteMotor >= CurrentPositionMinuteMotor:
     deltaMinuteMotor = TargetPositionMinuteMotor - CurrentPositionMinuteMotor
